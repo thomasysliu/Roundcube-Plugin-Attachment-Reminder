@@ -1,5 +1,5 @@
 /* Attachment Reminder plugin script */
-/* TODO: Prompt on keypress , show matched keyword , search at mail title , localization
+/* TODO: Prompt on keypress , show matched keyword , localization
 
  */
  
@@ -51,14 +51,14 @@ if (window.rcmail) {
         rcmail.addEventListener('beforesend', function(evt) {
 		 //Get value
 		 msg = rcmail_get_compose_message();
-		 
+		 subject = document.getElementById("compose-subject").value;
 		 //console.log( msg );
 		 
 		 //Check attachment
 		 
 		 have_attachment = rcmail_have_attachments();
 		 //console.log( have_attachment );
-		 contain_key_word = rcmail_check_message(msg);
+		 contain_key_word = rcmail_check_message(msg) || rcmail_check_message(subject);
 		 
 		 if( !have_attachment && contain_key_word ){
 			 //Confirm
