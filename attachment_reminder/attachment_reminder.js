@@ -19,7 +19,7 @@ function rcmail_check_message( msg )
 
 	keyword = [
             "attachment", "file", "attach", "attached", "attaching", "enclosed", "CV", "cover letter",
-            "anbei", "im anhang", "attaching", ".doc", ".pdf",
+            "anbei", "im anhang", "attaching", ".doc", ".pdf", "adjunto",
             "angehängt", "angefügt", "附件","附加","附檔","附上","附加檔案"
         ];
 
