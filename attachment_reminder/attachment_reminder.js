@@ -11,7 +11,12 @@ function rcmail_get_compose_message()
     if (window.tinyMCE && (ed = tinyMCE.get(rcmail.env.composebody)))
 		return ed.getContent();
     else
-        return  document.getElementById("compose-body").value;
+    {
+    	if(document.getElementById("compose-body"))
+    		return document.getElementById("compose-body").value;
+    	else
+    		return document.getElementById("composebody").value;
+    }
 }
 
 function rcmail_check_message( msg )
@@ -20,7 +25,7 @@ function rcmail_check_message( msg )
 	keyword = [
             "attachment", "file", "attach", "attached", "attaching", "enclosed", "CV", "cover letter",
             "anbei", "im anhang", "attaching", ".doc", ".pdf", "adjunto",
-            "angehängt", "angefügt", "附件","附加","附檔","附上","附加檔案"
+            "angehängt", "angefügt", "beigefügt", "beliegend", "附件","附加","附檔","附上","附加檔案"
         ];
 
 	for (var i = 0; i < keyword.length; i++) { 
