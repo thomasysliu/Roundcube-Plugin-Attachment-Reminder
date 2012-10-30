@@ -9,14 +9,20 @@
 function rcmail_get_compose_message()
 {
     if (window.tinyMCE && (ed = tinyMCE.get(rcmail.env.composebody)))
-		return ed.getContent();
+    {
+		msg = ed.getContent();
+    	msg = msg.replace(/<blockquote[^>]*>(.|[\r\n])*<\/blockquote>/gmi, '');
+    }
     else
     {
     	if(document.getElementById("compose-body"))
-    		return document.getElementById("compose-body").value;
+    		msg = document.getElementById("compose-body").value;
     	else
-    		return document.getElementById("composebody").value;
+    		msg = document.getElementById("composebody").value;
+      
+      	msg = msg.replace(/^\s*>.*$/gmi, '');
     }
+    return msg;
 }
 
 function rcmail_check_message( msg )
