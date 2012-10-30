@@ -9,24 +9,26 @@
 function rcmail_get_compose_message()
 {
     if (window.tinyMCE && (ed = tinyMCE.get(rcmail.env.composebody)))
-		return ed.getContent();
+    {
+		msg = ed.getContent();
+    	msg = msg.replace(/<blockquote[^>]*>(.|[\r\n])*<\/blockquote>/gmi, '');
+    }
     else
     {
     	if(document.getElementById("compose-body"))
-    		return document.getElementById("compose-body").value;
+    		msg = document.getElementById("compose-body").value;
     	else
-    		return document.getElementById("composebody").value;
+    		msg = document.getElementById("composebody").value;
+      
+      	msg = msg.replace(/^\s*>.*$/gmi, '');
     }
+    return msg;
 }
 
 function rcmail_check_message( msg )
 {
 
-	keyword = [
-            "attachment", "file", "attach", "attached", "attaching", "enclosed", "CV", "cover letter",
-            "anbei", "im anhang", "attaching", ".doc", ".pdf", "adjunto",
-            "angehängt", "angefügt", "beigefügt", "beliegend", "附件","附加","附檔","附上","附加檔案"
-        ];
+	keyword = rcmail.gettext('keywords', 'attachment_reminder').split(",").concat([".doc", ".pdf"]);
 
 	for (var i = 0; i < keyword.length; i++) { 
 		var rg = new RegExp(keyword[i],'i');
