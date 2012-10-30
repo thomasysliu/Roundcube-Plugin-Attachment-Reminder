@@ -28,12 +28,7 @@ function rcmail_get_compose_message()
 function rcmail_check_message( msg )
 {
 
-	keyword = [
-            "attachment", "file", "attach", "attached", "attaching", "enclosed", "CV", "cover letter",
-            "anbei", "im anhang", "attaching", ".doc", ".pdf", "adjunto",
-            "joins","joint","attaché",
-            "angehängt", "angefügt", "beigefügt", "beliegend", "附件","附加","附檔","附上","附加檔案"
-        ];
+	keyword = rcmail.gettext('keywords', 'attachment_reminder').split(",").concat([".doc", ".pdf"]);
 
 	for (var i = 0; i < keyword.length; i++) { 
 		var rg = new RegExp(keyword[i],'i');
