@@ -1,0 +1,14 @@
+{
+    "name": "thomasysliu/Roundcube-Plugin-Attachment-Reminder",
+    "type": "roundcube-plugin",
+    "license": "GPL-3.0",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://plugins.roundcube.net"
+        }
+    ],
+    "require": {
+        "roundcube/plugin-installer": ">=0.1.1"
+    }
+}
